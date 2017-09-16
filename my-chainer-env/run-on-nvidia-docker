@@ -1,0 +1,21 @@
+#/bin/sh
+
+mkdir -p $USER/work
+d_user='d-worker'
+d_group='d-worker'
+
+image_name='my-chainer-env:0.1'
+
+echo "nvidia-docker run --rm -it \
+	      -e DISPLAY=$DISPLAY \
+	      -u $d_user:$d_group \
+	      -v /home/$USER/work:/home/$d_user/work \
+	      -v /tmp/.X11-unix/:/tmp/.X11-unix \
+	      -t $image_name"
+
+nvidia-docker run --rm -it \
+	      -e DISPLAY=$DISPLAY \
+	      -u $d_user:$d_group \
+	      -v /home/$USER/work:/home/$d_user/work \
+	      -v /tmp/.X11-unix/:/tmp/.X11-unix \
+	      -t $image_name

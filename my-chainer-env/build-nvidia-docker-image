@@ -1,0 +1,6 @@
+#/bin/sh
+
+image_name='my-chainer-env:0.1'
+
+echo "docker build -t $image_name ."
+docker build -t $image_name .
