@@ -8,16 +8,16 @@ image_name='my-chainer-env:0.1'
 
 echo "nvidia-docker run --rm -it \
 	      -h cuda-dev \
-	      -e DISPLAY=$DISPLAY \
 	      -u $d_user:$d_group \
 	      -v $HOME/work:/home/$d_user/work \
+	      -e DISPLAY=$DISPLAY \
 	      -v /tmp/.X11-unix/:/tmp/.X11-unix \
 	      -t $image_name"
 
 nvidia-docker run --rm -it \
 	      -h cuda-dev \
-	      -e DISPLAY=$DISPLAY \
 	      -u $d_user:$d_group \
 	      -v $HOME/work:/home/$d_user/work \
+      	      -e DISPLAY=$DISPLAY \
 	      -v /tmp/.X11-unix/:/tmp/.X11-unix \
 	      -t $image_name
