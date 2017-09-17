@@ -1,6 +1,6 @@
 #/bin/sh
 
-mkdir -p $USER/work
+mkdir -p $HOME/work
 d_user='d-worker'
 d_group='d-worker'
 
@@ -10,7 +10,7 @@ echo "nvidia-docker run --rm -it \
 	      -h cuda-dev \
 	      -e DISPLAY=$DISPLAY \
 	      -u $d_user:$d_group \
-	      -v /home/$USER/work:/home/$d_user/work \
+	      -v $HOME/work:/home/$d_user/work \
 	      -v /tmp/.X11-unix/:/tmp/.X11-unix \
 	      -t $image_name"
 
@@ -18,6 +18,6 @@ nvidia-docker run --rm -it \
 	      -h cuda-dev \
 	      -e DISPLAY=$DISPLAY \
 	      -u $d_user:$d_group \
-	      -v /home/$USER/work:/home/$d_user/work \
+	      -v $HOME/work:/home/$d_user/work \
 	      -v /tmp/.X11-unix/:/tmp/.X11-unix \
 	      -t $image_name
