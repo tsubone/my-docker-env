@@ -1,0 +1,10 @@
+see homepage at
+https://nicroland.wordpress.com/2015/12/06/running-qtcreator-in-docker/
+
+install nvidia driver to avoid the following error.
+libGL error: No matching fbConfigs or visuals found
+libGL error: failed to load driver: swrast
+
+$ sudo apt-get install nvidia-375-dev
+
+

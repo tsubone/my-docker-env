@@ -1,0 +1,18 @@
+#/bin/sh
+
+mkdir -p $HOME/work
+mkdir -p $HOME/YOCTO
+
+d_user='d-worker'
+d_group='d-worker'
+
+docker run -it \
+       -v /tmp/.X11-unix:/tmp/.X11-unix \
+       -e DISPLAY=$DISPLAY \
+       -v /dev/shm:/dev/shm \
+       -v ~/src:/root \
+       --device /dev/dri \
+       --name qt_creator \
+       --rm \
+       --entrypoint /home/d-worker/Qt/Tools/QtCreator/bin/qtcreator \
+       qt:latest
