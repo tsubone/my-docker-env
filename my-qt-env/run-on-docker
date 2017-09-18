@@ -10,8 +10,11 @@ docker run -it \
        -v /tmp/.X11-unix:/tmp/.X11-unix \
        -e DISPLAY=$DISPLAY \
        -v /dev/shm:/dev/shm \
-       -v ~/src:/root \
-       --device /dev/dri \
+       --device /dev/nvidia-modeset \
+       --device /dev/nvidia-uvm \
+       --device /dev/nvidia0 \
+       --device /dev/nvidiactl \
+       --device /dev/nvram \
        --name qt_creator \
        --rm \
        --entrypoint /home/d-worker/Qt/Tools/QtCreator/bin/qtcreator \
