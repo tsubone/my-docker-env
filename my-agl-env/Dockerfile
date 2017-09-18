@@ -20,8 +20,10 @@ RUN apt-get update -y && \
 # to avoid bitbake utf-8 error
 RUN apt-get update -y && \
     apt-get install -y locales 
+RUN locale-gen en_US.UTF-8
+RUN update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 
-# chainer my devlopment package 
+# my devlopment package 
 RUN apt-get update -y && \
     apt-get install -y \
     emacs \

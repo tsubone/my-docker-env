@@ -13,6 +13,8 @@ echo "docker run --rm -it \
 	      -u $d_user:$d_group \
 	      -v $HOME/work:/home/$d_user/work \
 	      -v /home/YOCTO:/home/YOCTO \
+	      -e LANG=LANG=en_US.UTF-8 \
+	      -w /home/$d_user/work/agl-dev \
 	      -e DISPLAY=$DISPLAY \
 	      -v /tmp/.X11-unix/:/tmp/.X11-unix \
 	      -t $image_name"
@@ -22,6 +24,8 @@ docker run --rm -it \
 	      -u $d_user:$d_group \
 	      -v $HOME/work:/home/$d_user/work \
       	      -v /home/YOCTO:/home/YOCTO \
-      	      -e DISPLAY=$DISPLAY \
+      	      -e LANG=en_US.UTF-8 \
+	      -w /home/$d_user/work/agl-dev \
+	      -e DISPLAY=$DISPLAY \
 	      -v /tmp/.X11-unix/:/tmp/.X11-unix \
 	      -t $image_name
