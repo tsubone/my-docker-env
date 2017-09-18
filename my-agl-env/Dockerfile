@@ -37,7 +37,7 @@ ARG UID="1000"
 ARG GID="1000"
 ARG PASSWD="password"
 
-# chainer my devlopment package 
+# for sudo command
 RUN apt-get update -y && \
     apt-get install -y sudo
 
