@@ -17,6 +17,12 @@ RUN apt-get update -y && \
 	    git \
 	    gcc
 
+# agl for ping tools used from E.E.
+RUN apt-get update -y && \
+    apt-get install -y \
+    	    inetutils-ping \
+	    net-tools
+
 # to avoid bitbake utf-8 error
 RUN apt-get update -y && \
     apt-get install -y locales 
@@ -36,6 +42,7 @@ ARG GROUP="d-worker"
 ARG UID="1000"
 ARG GID="1000"
 ARG PASSWD="password"
+ARG EMAIL="d-worker@agl-dev"
 
 # for sudo command
 RUN apt-get update -y && \
@@ -48,3 +55,5 @@ WORKDIR /home/$USER
 USER $USER
 RUN mkdir work
 
+RUN git config --global user.name $USER
+RUN git config --global user.email $EMAIL
