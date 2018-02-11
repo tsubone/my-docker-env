@@ -20,8 +20,13 @@ RUN apt-get update -y && \
 # agl for ping tools used from E.E.
 RUN apt-get update -y && \
     apt-get install -y \
-    	    inetutils-ping \
-	    net-tools
+    	    inetutils-ping 
+
+# agl for ping tools used from E.E.
+#RUN apt-get update -y && \
+#    apt-get install -y \
+#    	    inetutils-ping \
+#	    net-tools
 
 # to avoid bitbake utf-8 error
 RUN apt-get update -y && \
@@ -30,11 +35,9 @@ RUN locale-gen en_US.UTF-8
 RUN update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 
 # my devlopment package 
-RUN apt-get update -y && \
-    apt-get install -y \
-    emacs \
-    gitk \
-    git-el
+#RUN apt-get update -y && \
+#    apt-get install -y \
+#    gitk \
 
 # user, group variable
 ARG USER="d-worker"
@@ -44,16 +47,21 @@ ARG GID="1000"
 ARG PASSWD="password"
 
 # for sudo command
-RUN apt-get update -y && \
-    apt-get install -y sudo
+#RUN apt-get update -y && \
+#    apt-get install -y sudo
 
-# add development user
+# add build/development user
 RUN groupadd -g $GID $GROUP && useradd -u $UID -g $GID -G sudo -m $USER
 RUN echo "$USER:$PASSWD" | chpasswd
+
 WORKDIR /home/$USER
 USER $USER
 RUN mkdir auto-build
 
-RUN git clone https://github.com/tsubone/agl-utils.git
+# download and extract build tools
+RUN wget https://github.com/tsubone/agl-utils/archive/master.tar.gz
+RUN tar xvzf master.tar.gz
+RUN mv agl-utils-master agl-utils
+#RUN git clone https://github.com/tsubone/agl-utils.git
 
 COPY build_bootstrap.sh .
