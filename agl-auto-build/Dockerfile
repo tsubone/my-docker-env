@@ -59,7 +59,9 @@ USER $USER
 RUN mkdir auto-build
 
 # download and extract build tools
-RUN wget https://github.com/tsubone/agl-utils/archive/master.tar.gz
+#ADD --chown=$USER:$GROUP https://github.com/tsubone/agl-utils/archive/master.tar.gz .
+#ADD --chown=d-user:$GROUP https://github.com/tsubone/agl-utils/archive/master.tar.gz .
+ADD --chown=1000:1000 https://github.com/tsubone/agl-utils/archive/master.tar.gz .
 RUN tar xvzf master.tar.gz
 RUN mv agl-utils-master agl-utils
 #RUN git clone https://github.com/tsubone/agl-utils.git
