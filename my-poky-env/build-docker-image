@@ -1,0 +1,6 @@
+#/bin/sh
+
+image_name='my-poky-env:0.1'
+
+echo "docker build -t $image_name ."
+docker build -t $image_name .

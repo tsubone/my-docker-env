@@ -1,0 +1,31 @@
+#/bin/sh
+
+mkdir -p $HOME/work
+mkdir -p $HOME/YOCTO
+
+d_user='d-worker'
+d_group='d-worker'
+
+image_name='my-poky-env:0.1'
+
+echo "docker run --rm -it \
+	      -h poky-dev \
+	      -u $d_user:$d_group \
+	      -v $HOME/work:/home/$d_user/work \
+	      -v /home/YOCTO:/home/YOCTO \
+	      -e LANG=LANG=en_US.UTF-8 \
+	      -w /home/$d_user/work/poky-dev \
+	      -e DISPLAY=$DISPLAY \
+	      -v /tmp/.X11-unix/:/tmp/.X11-unix \
+	      -t $image_name"
+
+docker run --rm -it \
+	      -h poky-dev \
+	      -u $d_user:$d_group \
+	      -v $HOME/work:/home/$d_user/work \
+      	      -v /home/YOCTO:/home/YOCTO \
+      	      -e LANG=en_US.UTF-8 \
+	      -w /home/$d_user/work/poky-dev \
+	      -e DISPLAY=$DISPLAY \
+	      -v /tmp/.X11-unix/:/tmp/.X11-unix \
+	      -t $image_name
