@@ -1,5 +1,8 @@
 FROM ubuntu:16.04
 
+ENV http_proxy http://proxy.mei.co.jp:8080
+ENV https_proxy https://proxy.mei.co.jp:8080
+
 # agl tools written in Automotive Grade Linux Wiki
 RUN apt-get update -y && \
     apt-get install -y \
@@ -48,6 +51,13 @@ ARG EMAIL="d-worker@agl-dev"
 RUN apt-get update -y && \
     apt-get install -y sudo
 
+RUN apt-get update -y && \
+    apt-get install -y corkscrew
+
+RUN mkdir -p /usr/local/bin
+ADD git-proxy /usr/local/bin/git-proxy
+RUN chmod 755 /usr/local/bin/git-proxy
+
 # add development user
 RUN groupadd -g $GID $GROUP && useradd -u $UID -g $GID -G sudo -m $USER
 RUN echo "$USER:$PASSWD" | chpasswd
@@ -57,3 +67,7 @@ RUN mkdir work
 
 RUN git config --global user.name $USER
 RUN git config --global user.email $EMAIL
+
+RUN git config --global	core.gitproxy /usr/local/bin/git-proxy
+RUN git config --global http.proxy http://proxy.mei.co.jp:8080
+RUN git config --global https.proxy https://proxy.mei.co.jp:8080
