@@ -71,3 +71,7 @@ RUN git config --global user.email $EMAIL
 RUN git config --global	core.gitproxy /usr/local/bin/git-proxy
 RUN git config --global http.proxy http://proxy.mei.co.jp:8080
 RUN git config --global https.proxy https://proxy.mei.co.jp:8080
+
+RUN mkdir -p /home/$USER/.ssh
+ADD --chown=d-worker:d-worker ssh-config /home/$USER/.ssh/config
+RUN chmod 644 /home/$USER/.ssh/config
